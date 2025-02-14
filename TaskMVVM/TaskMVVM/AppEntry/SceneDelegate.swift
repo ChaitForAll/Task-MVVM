@@ -19,9 +19,12 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         options connectionOptions: UIScene.ConnectionOptions
     ) {
         guard let windowScene = scene as? UIWindowScene else { return }
+        let rootViewController = TodoMarkingViewController()
+        let viewModel = TodoMarkingViewModel(todoStorage: TodoStorageImplementation())
+        rootViewController.viewModel = viewModel
         let window = UIWindow(windowScene: windowScene)
         window.makeKeyAndVisible()
-        window.rootViewController = ViewController()
+        window.rootViewController = UINavigationController(rootViewController: rootViewController)
         self.window = window
     }
 }
